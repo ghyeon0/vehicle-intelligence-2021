@@ -77,7 +77,7 @@ if __name__ == '__main__':
         #   we will assume that this represents the vehicle's position.
         particle = pf.get_best_particle()
         # Print for debugging purposes.
-        print("[%d] %f, %f" % (count, particle['x'], particle['y']))
+        # print("[%d] %f, %f" % (count, particle['x'], particle['y']))
         # Collect data for post-mortem plotting.
         graph.append({
             'position': (particle['x'], particle['y']),

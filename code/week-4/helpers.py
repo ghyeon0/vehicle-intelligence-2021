@@ -1,4 +1,7 @@
 import numpy as np
+from math import sqrt
+from math import pi
+from math import exp
 
 # Calculate Euclidean distance between two 2-D points.
 def distance(p1, p2):
@@ -6,3 +9,7 @@ def distance(p1, p2):
     dy = p1['y'] - p2['y']
     d = np.sqrt(dx ** 2 + dy ** 2)
     return d
+
+def norm_pdf(x, m, s):
+    one_over_sqrt_2pi = 1 / sqrt(2 * pi)
+    return (one_over_sqrt_2pi / s) * exp(-0.5 * ((x - m) / s) ** 2)
