@@ -61,10 +61,10 @@ Complete the implementation of EKF with sensor fusion by writing the function `u
 
 ```python
 def calc_h_x(x):
-		a = sqrt(x[0] ** 2 + x[1] ** 2)
-		b = atan2(x[1], x[0])
- 		c = (x[0] * x[2] + x[1] * x[3]) / a
-		return np.array([a, b, c])
+    a = sqrt(x[0] ** 2 + x[1] ** 2)
+    b = atan2(x[1], x[0])
+    c = (x[0] * x[2] + x[1] * x[3]) / a
+    return np.array([a, b, c])
 
 H_j = Jacobian(self.x)
 
@@ -73,9 +73,9 @@ K = np.dot(np.dot(self.P, H_j.T), np.linalg.inv(S))
 y = z - calc_h_x(self.x)
 
 if y[1] >= 0:
-		y[1] %= np.pi
+    y[1] %= np.pi
 else:
-		y[1] = -(-y[1] % np.pi)
+    y[1] = -(-y[1] % np.pi)
 
 self.x = self.x + np.dot(K, y)
 self.P = np.dot((np.eye(4) - np.dot(K, H_j)), self.P)
