@@ -36,7 +36,7 @@ If you run the program (`main.py`) without any modification to the code, it will
 
 ```python
 for i in range(map_size):
-		position_prob += norm_pdf(position - i, mov, stdev) * priors[i]
+    position_prob += norm_pdf(position - i, mov, stdev) * priors[i]
 ```
 
 - norm_pdf 함수의 결과와 priors 배열의 값을 이용하여 확률 계산을 수행하여 position_prob에 모두 더해서 return 하도록 코드를 작성하였다.
@@ -47,12 +47,12 @@ for i in range(map_size):
 
 ```python
 if len(observations) == 0:
-		distance_prob = 0.0
+    distance_prob = 0.0
 elif len(observations) > len(pseudo_ranges):
-		distance_prob = 0.0
+    distance_prob = 0.0
 else:
-		for i in range(len(observations)):
-				distance_prob *= norm_pdf(observations[i], pseudo_ranges[i], stdev)
+    for i in range(len(observations)):
+        distance_prob *= norm_pdf(observations[i], pseudo_ranges[i], stdev)
 ```
 
 - observations 배열의 길이가 0이거나 pseudo_ranges의 길이보다 긴 경우는 확률을 0으로, 아닌 경우에는 observations의 확률을 모두 계산 후 곱해서 return 하도록 코드를 작성하였다. 
