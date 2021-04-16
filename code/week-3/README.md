@@ -63,8 +63,8 @@ Complete the implementation of EKF with sensor fusion by writing the function `u
 def calc_h_x(x):
 		a = sqrt(x[0] ** 2 + x[1] ** 2)
 		b = atan2(x[1], x[0])
-  	c = (x[0] * x[2] + x[1] * x[3]) / a
-  	return np.array([a, b, c])
+ 		c = (x[0] * x[2] + x[1] * x[3]) / a
+		return np.array([a, b, c])
 
 H_j = Jacobian(self.x)
 
