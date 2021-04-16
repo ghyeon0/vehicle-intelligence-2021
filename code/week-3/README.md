@@ -2,7 +2,7 @@
 
 ---
 
-[//]: # (Image References)
+[//]: # "Image References"
 [kalman-result]: ./kalman_filter/graph.png
 [EKF-results]: ./EKF/plot.png
 
@@ -52,3 +52,33 @@ The program consists of five modules:
 ### Assignment
 
 Complete the implementation of EKF with sensor fusion by writing the function `update_ekf()` in the module `kalman_filter`. Details are given in class and instructions are included in comments.
+
+
+
+### Assignment Result
+
+<img width="1312" alt="EKF" src="https://user-images.githubusercontent.com/13490996/115030263-da3ac380-9f01-11eb-9890-bda40937f148.png">
+
+```python
+def calc_h_x(x):
+		a = sqrt(x[0] ** 2 + x[1] ** 2)
+		b = atan2(x[1], x[0])
+  	c = (x[0] * x[2] + x[1] * x[3]) / a
+  	return np.array([a, b, c])
+
+H_j = Jacobian(self.x)
+
+S = np.dot(np.dot(H_j, self.P), H_j.T) + self.R
+K = np.dot(np.dot(self.P, H_j.T), np.linalg.inv(S))
+y = z - calc_h_x(self.x)
+
+if y[1] >= 0:
+		y[1] %= np.pi
+else:
+		y[1] = -(-y[1] % np.pi)
+
+self.x = self.x + np.dot(K, y)
+self.P = np.dot((np.eye(4) - np.dot(K, H_j)), self.P)
+```
+
+- 주어진 주석에 맞춰서 구현을 진행하였다. 
