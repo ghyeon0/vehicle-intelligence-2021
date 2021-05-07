@@ -38,3 +38,13 @@ This example is intended to illustrate the algorithm's capability of generating 
 because of the prohibitively high cost associated with a left turn.
 
 You are highly encouraged to experiment with different (more complex) maps and different cost settings for each type of action.
+
+## Assignment Result
+
+cost = (2, 1, 20)
+
+<img width="167" alt="Screen Shot 2021-05-07 at 11 43 34 PM" src="https://user-images.githubusercontent.com/13490996/117466895-27083c00-af8e-11eb-84eb-de3ccdd3f111.png">
+
+cost = (2, 1, 2)
+
+<img width="171" alt="Screen Shot 2021-05-07 at 11 44 33 PM" src="https://user-images.githubusercontent.com/13490996/117467003-42734700-af8e-11eb-8a16-73cf24a4207c.png">

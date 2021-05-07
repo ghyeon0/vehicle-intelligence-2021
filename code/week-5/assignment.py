@@ -71,14 +71,46 @@ def optimum_policy_2D(grid, init, goal, cost):
             # use in generating the final path policy.
             if (y, x) == goal and value[(t, y, x)] > 0:
                 # TODO: implement code.
-                pass
+                change = True
+                value[(t, y, x)] = 0
+                policy[(t, y, x)] = -999
             # Try to use simple arithmetic to capture state transitions.
             elif grid[(y, x)] == 0:
                 # TODO: implement code.
-                pass
+                for i in range(len(action)):
+                    temp_t = (t + action[i]) % 4
+                    temp_y = y + forward[temp_t][0]
+                    temp_x = x + forward[temp_t][1]
+                    
+                    if 0 <= temp_x < grid.shape[1] and 0 <= temp_y < grid.shape[0] and grid[(temp_y, temp_x)] == 0:
+                        temp_cost = value[(temp_t, temp_y, temp_x)] + cost[i]
+
+                        if temp_cost < value[(t, y, x)]:
+                            value[(t, y, x)] = temp_cost
+                            policy[(t, y, x)] = action[i]
+                            change = True
+
+                
     # Now navigate through the policy table to generate a
     # sequence of actions to take to follow the optimal path.
     # TODO: implement code.
+    y, x, t = init
+    policy2D[(y, x)] = action_name[policy[(t, y, x)] + 1]
+
+    while policy[(t, y, x)] != -999:
+        if policy[(t, y, x)] == action[0]:
+            t = (t - 1) % 4
+        elif policy[(t, y, x)] == action[2]:
+            t  = (t + 1) % 4
+        
+        y += forward[t][0]
+        x += forward[t][1]
+
+        if policy[(t, y, x)] == -999:
+            policy2D[(y, x)] = '*'
+        else:
+            policy2D[(y, x)] = action_name[policy[(t, y, x)] + 1]
+
 
     # Return the optimum policy generated above.
     return policy2D
